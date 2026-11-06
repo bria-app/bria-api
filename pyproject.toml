@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bria-api"
+version = "0.1.0"
+description = "Backend API for bria."
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
+    "pydantic-settings",
+    "sqlalchemy",
+    "alembic",
+    "psycopg[binary]",
+    "python-jose[cryptography]",
+    "bcrypt",
+    "python-multipart",
+    "httpx"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "ruff",
+    "mypy"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
+exclude = [
+    "migrations*",
+    "tests*",
+    "docs*"
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
